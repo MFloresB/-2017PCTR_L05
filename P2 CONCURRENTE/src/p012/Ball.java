@@ -3,8 +3,8 @@ package p012;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 //TODO Transform the code to be used safely in a concurrent context.  
-public class Ball {
-       //TODO  Find an archive named Ball.png 
+public class Ball extends Thread{
+       //TODO  Find an archive named Ball.png ?
 	private String Ball = "Ball.png"; 
 
 	private double x,y,dx,dy;
@@ -30,7 +30,12 @@ public class Ball {
 		}
 		x += dx;   
 		y += dy;
-		//TODO Check postcondition
+		
+		assert (x <= Billiards.Width);	
+		assert (x >= 0);
+		assert (y <= Billiards.Height);	
+		assert (y >= 0);
+				
 	}
 
 	public void reflect() {
