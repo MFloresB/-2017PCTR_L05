@@ -67,7 +67,7 @@ public class Billiards extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			board.setBalls(balls);
 			for (int i = 0; i < N_BALL; i++) {
-				threads[i] = new Thread((balls[i]));
+				threads[i] = makeThread(balls[i]);
 
 				threads[i].start();
 			}
@@ -83,6 +83,27 @@ public class Billiards extends JFrame {
 			}
 
 		}
+	}
+
+	private Thread makeThread(final Ball ball) {
+		Runnable runloop = new Runnable() {
+			public void run() {
+				try {
+
+					while (true) {
+						ball.move();
+						ball.reflect();
+						board.repaint();
+						Thread.sleep(30);
+					}
+
+				} catch (InterruptedException e) {
+					return;
+				}
+			}
+		};
+		return new Thread(runloop);
+
 	}
 
 	public static void main(String[] args) {

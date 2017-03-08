@@ -87,5 +87,9 @@ public class Ball extends Thread {
 	public Image getImage() {
 		return image;
 	}
+	
+	
+	
+	
 
 }
