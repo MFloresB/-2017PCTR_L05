@@ -65,6 +65,7 @@ public class Billiards extends JFrame {
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			board.setBalls(balls);
 			for (int i = 0; i < N_BALL; i++) {
 				threads[i] = new Thread((balls[i]));
 

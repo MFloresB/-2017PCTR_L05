@@ -21,7 +21,7 @@ public class Ball extends Thread {
 		fi = Math.random() * Math.PI * 2;
 	}
 
-	public void move() {
+	public synchronized void move() {
 		v = v * Math.exp(-v / 1000);
 		dx = v * Math.cos(fi);
 		dy = v * Math.sin(fi);
@@ -35,12 +35,12 @@ public class Ball extends Thread {
 		assert (x > Board.LEFTBOARD);
 		assert (x < Board.RIGHTBOARD);
 
-		assert (y > Board.BOTTOMBOARD);
-		assert (y < Board.TOPBOARD);
+		assert (y < Board.BOTTOMBOARD);
+		assert (y > Board.TOPBOARD);
 
 	}
 
-	public void reflect() {
+	public synchronized void reflect() {
 		if (Math.abs(x + 32 - Board.RIGHTBOARD) < Math.abs(dx)) {
 			fi = Math.PI - fi;
 		}
@@ -56,8 +56,8 @@ public class Ball extends Thread {
 		assert (x > Board.LEFTBOARD);
 		assert (x < Board.RIGHTBOARD);
 
-		assert (y > Board.BOTTOMBOARD);
-		assert (y < Board.TOPBOARD);
+		assert (y < Board.BOTTOMBOARD);
+		assert (y > Board.TOPBOARD);
 	}
 
 	public int getX() {
